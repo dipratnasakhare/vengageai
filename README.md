@@ -29,6 +29,9 @@ contact delele
 https://dark-cyan-gosling-tutu.cyclic.app/phone/search
 search name shown by list
 
+https://dark-cyan-gosling-tutu.cyclic.app/phone/patch
+updating the contact
+
 ## Problem 1
 
 
