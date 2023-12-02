@@ -7,62 +7,57 @@ import {
   InputGroup,
   InputLeftAddon,
   Button,
+  useToast,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { postData } from "../../Redux/products/Prodaction";
+import React from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useToast } from '@chakra-ui/react'
+import { useNavigate } from "react-router-dom";
+import { patchDate } from "../../Redux/products/Prodaction";
 
+export const EditBox = () => {
+  let data = JSON.parse(localStorage.getItem("phonebookEdit")) || "";
 
+  const [first, setFirst] = useState(data.firstName || "");
+  const [last, setLast] = useState(data.lastName || "");
+  const [number, setNumber] = useState(data.number || "");
+  const [company, setCompany] = useState(data.company || "");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const toast = useToast()
 
-export const AddContact = ({ToggleContact}) => {
+  console.log(first);
 
-
-    const dispatch = useDispatch()
-    const [first, setFirst]  = useState("")
-    const [last, setLast]  = useState("")
-    const [number, setNumber]  = useState("")
-    const [company, setCompany]  = useState("")
-    const toast = useToast()
-    const [Bool, setBool] = useState(true)
-
-
-    useEffect(() => {
-        if(first && last && company  !== "" && number.length >= 10){
-            setBool(false)
-        }
-    }, [first, last, number, company])
-
-
-    const Post = () => {
-        let data = {
-            firstName:first,
-            lastName:last,
-            company,
-            number
-        }
-
-        dispatch(postData(data))
-        ToggleContact()
-        toast({
-          title: 'post is added',
-          position: 'top',
-          status: 'success',
-          duration: 2000,
-          isClosable: true,
-        })
-    }
-
-
-
+  const HandelPost = () => {
+    let arr = {
+      firstName: first,
+      lastName: last,
+      company,
+      number,
+    };
+    dispatch(patchDate(arr, data["_id"]));
+    toast({
+        title: 'post is updated',
+        position: 'top',
+        status: 'success',
+        duration: 2000,
+        isClosable: true,
+      })
+      navigate("/")
+  };
 
   return (
     <Box mt="1rem" display={"grid"} gap="20px">
       <Flex justifyContent={"space-around"}>
-        <Button onClick={ToggleContact} bg="none" color="blue.400">Cancel</Button>
-        <Button bg="none" color="black">New Contact</Button>
-        <Button onClick={Post} bg="none" isDisabled={Bool}>Done</Button>
+        <Button onClick={() => navigate("/")} bg="none" color="blue.400">
+          Cancel
+        </Button>
+        <Button bg="none" color="black">
+          Edit contact
+        </Button>
+        <Button bg="none" onClick={HandelPost}>
+          Done
+        </Button>
       </Flex>
       <Center mt="25px">
         <Image
@@ -73,22 +68,37 @@ export const AddContact = ({ToggleContact}) => {
           alt="dp"
         />
       </Center>{" "}
-      <Center>
-        {" "}
-        {/* <Text color="blue">Add Photo</Text> */}
-      </Center>
-     
+      <Center> {/* <Text color="blue">Add Photo</Text> */}</Center>
+      <Box display={"grid"} gap={"20px"}>
+        <Input
+          value={first}
+          onChange={(e) => setFirst(e.target.value)}
+          placeholder="first name"
+          size="md"
+        />
+        <Input
+          value={last}
+          onChange={(e) => setLast(e.target.value)}
+          placeholder="last name"
+          size="md"
+        />
+        <Input
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+          placeholder="company"
+          size="md"
+        />
 
-     <Box display={"grid"} gap={"20px"}>
-        <Input value={first} onChange={(e)=>setFirst(e.target.value)} placeholder="first name" size="md" />
-        <Input value={last} onChange={(e)=>setLast(e.target.value)} placeholder="last name" size="md" />
-        <Input value={company} onChange={(e)=>setCompany(e.target.value)} placeholder="company" size="md" />
-     
         <InputGroup>
           <InputLeftAddon children="+91" />
-          <Input value={number} onChange={(e)=>setNumber(e.target.value)} type="number" placeholder="phone number" />
+          <Input
+            value={number}
+            onChange={(e) => setNumber(e.target.value)}
+            type="number"
+            placeholder="phone number"
+          />
         </InputGroup>
-     </Box>
+      </Box>
     </Box>
   );
 };

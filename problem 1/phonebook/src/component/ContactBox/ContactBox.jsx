@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Image,
   Flex,
   Input,
@@ -12,7 +11,9 @@ import {
 import React, { useState } from "react";
 import { Search2Icon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
+import { AddIcon } from "@chakra-ui/icons";
 import { searchData } from "../../Redux/products/Prodaction";
+import { useEffect } from "react";
 
 export const ContactBox = ({ ToggleContact }) => {
   let character = "https://cdn-icons-png.flaticon.com/512/4298/4298256.png";
@@ -25,8 +26,7 @@ export const ContactBox = ({ ToggleContact }) => {
 
   let call = 0;
 
-  const throttle = (func, delay, e) => {
-    setText(e.target.value)
+  const throttle = (func, delay) => {
     function make() {
       if (Date.now() - call > delay) {
         call = Date.now();
@@ -35,6 +35,11 @@ export const ContactBox = ({ ToggleContact }) => {
     }
     make();
   };
+
+
+  useEffect(() => {
+    throttle(dibouncing, 1000)
+  }, [text])
 
   return (
     <Box
@@ -50,21 +55,25 @@ export const ContactBox = ({ ToggleContact }) => {
         justifyContent={"space-between"}
         verticalAlign={"bottom"}
       >
-        <Box display={"flex"}>
-          <Text mr="8px" onClick={ToggleContact}>
-            Add Contact
-          </Text>
-        </Box>
+        <Flex gap="10px">
+          <Image w="40px" src={character} alt="" />
+          <Text mt="8px" display={["none", "none", "flex"]}>Phonebook</Text>
+        </Flex>
 
         <Box>
-          <InputGroup borderRadius={5} size="sm">
+          <InputGroup
+            borderRadius={5}
+            w={["100px", "150px", "200px"]}
+            size="sm"
+          >
             <InputLeftElement
               pointerEvents="none"
               children={<Search2Icon color="gray.600" />}
             />
             <Input
               onChange={(e) => {
-                throttle(dibouncing, 1000, e);
+                setText(e.target.value);
+                // throttle(dibouncing, 1000);
               }}
               value={text}
               type="text"
@@ -75,16 +84,15 @@ export const ContactBox = ({ ToggleContact }) => {
           </InputGroup>
         </Box>
 
-        {/* <Box>
-            <InfoIcon />
-        </Box>
-
-        <Box>
-            <SettingsIcon />
-        </Box> */}
-
-        <Box>
-          <Image w="30px" src={character} alt="" />
+        <Box
+          display={"flex"}
+          gap="5px"
+          border={"1px solid"}
+          borderRadius={"20px"}
+          p="5px"
+        >
+          <AddIcon mt="5px" />
+          <Text onClick={ToggleContact}>Create contact</Text>
         </Box>
       </Flex>
     </Box>
