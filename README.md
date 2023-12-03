@@ -34,8 +34,20 @@ updating the contact
 
 ## Problem 1
 
+react app with chakra ui it is a phonebook website
+adding new contact
+deleting contact
+searching contact
+updating contact
+responsive also for mobile
+
 
 ## Problem 2
+
+react app with chakra ui it is a meeting time scheduler website
+shows time for every week
+responsive also for mobile
+
 
 
 # Getting Started with Create React App

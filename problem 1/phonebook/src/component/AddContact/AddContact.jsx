@@ -46,7 +46,7 @@ export const AddContact = ({ToggleContact}) => {
         dispatch(postData(data))
         ToggleContact()
         toast({
-          title: 'post is added',
+          title: 'contact is added',
           position: 'top',
           status: 'success',
           duration: 2000,
@@ -79,7 +79,7 @@ export const AddContact = ({ToggleContact}) => {
       </Center>
      
 
-     <Box display={"grid"} gap={"20px"}>
+     <Box w={['90%','80%', '50%']} m="auto" display={"grid"} gap={"20px"}>
         <Input value={first} onChange={(e)=>setFirst(e.target.value)} placeholder="first name" size="md" />
         <Input value={last} onChange={(e)=>setLast(e.target.value)} placeholder="last name" size="md" />
         <Input value={company} onChange={(e)=>setCompany(e.target.value)} placeholder="company" size="md" />

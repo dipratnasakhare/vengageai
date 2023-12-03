@@ -37,7 +37,7 @@ export const EditBox = () => {
     };
     dispatch(patchDate(arr, data["_id"]));
     toast({
-        title: 'post is updated',
+        title: 'contact is updated',
         position: 'top',
         status: 'success',
         duration: 2000,
@@ -69,7 +69,7 @@ export const EditBox = () => {
         />
       </Center>{" "}
       <Center> {/* <Text color="blue">Add Photo</Text> */}</Center>
-      <Box display={"grid"} gap={"20px"}>
+      <Box w={['90%','80%', '50%']} m="auto" display={"grid"} gap={"20px"}>
         <Input
           value={first}
           onChange={(e) => setFirst(e.target.value)}
