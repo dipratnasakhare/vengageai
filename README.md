@@ -1,7 +1,7 @@
 # vengageai
 
-problem 1 link - https://vengageai-dipratnasakhare.vercel.app/
-backend link - https://dark-cyan-gosling-tutu.cyclic.app
+problem 1 link - https://vengageai-dipratnasakhare.vercel.app/.
+backend link - https://dark-cyan-gosling-tutu.cyclic.app.
 problem 2 app - https://meet-chi-one.vercel.app
 
 
@@ -34,18 +34,18 @@ updating the contact
 
 ## Problem 1
 
-react app with chakra ui it is a phonebook website
-adding new contact
-deleting contact
-searching contact
-updating contact
+react app with chakra ui it is a phonebook website.
+adding new contact,
+deleting contact,
+searching contact,
+updating contact,
 responsive also for mobile
 
 
 ## Problem 2
 
-react app with chakra ui it is a meeting time scheduler website
-shows time for every week
+react app with chakra ui it is a meeting time scheduler website.
+shows time for every week,
 responsive also for mobile
 
 
